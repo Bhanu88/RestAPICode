@@ -20,6 +20,7 @@ import com.bhanu.pr.AppointmentManagement.Service.AppointmentService;
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 public class AppointmnetResource {
 	
+	
 	AppointmentService appservice=new AppointmentService();
 	@GET
 	public List<Appointment> getAppointmnet(){
