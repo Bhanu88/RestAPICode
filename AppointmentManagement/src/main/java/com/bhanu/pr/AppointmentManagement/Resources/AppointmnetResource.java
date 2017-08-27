@@ -16,8 +16,8 @@ import com.bhanu.pr.AppointmentManagement.Model.Appointment;
 import com.bhanu.pr.AppointmentManagement.Service.AppointmentService;
 
 @Path("appointment")
-@Produces({ MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-@Consumes({ MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 public class AppointmnetResource {
 	
 	AppointmentService appservice=new AppointmentService();
