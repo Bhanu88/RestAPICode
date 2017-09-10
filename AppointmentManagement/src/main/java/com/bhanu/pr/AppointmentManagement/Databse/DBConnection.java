@@ -1,16 +1,23 @@
 package com.bhanu.pr.AppointmentManagement.Databse;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class DBConnection {
 
 	
 	Connection conn;
+	Properties prop = new Properties();
+	InputStream input = null;
 	
 	public Connection getConnection(){
 		
@@ -19,8 +26,13 @@ public class DBConnection {
 				+ "JDBC Connection Testing ------------");*/
 
 		try {
+			//input = new FileInputStream("DBProp.properties");
+			input =getClass().getClassLoader().getResourceAsStream("DBProp.properties");
 
-			Class.forName("org.postgresql.Driver");
+			prop.load(input);
+
+			//Class.forName("org.postgresql.Driver");
+			Class.forName(prop.getProperty("CLASSNAME"));
 
 		} catch (ClassNotFoundException e) {
 
@@ -29,6 +41,12 @@ public class DBConnection {
 			e.printStackTrace();
 		
 
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		System.out.println("PostgreSQL JDBC Driver Registered!");
@@ -38,8 +56,8 @@ public class DBConnection {
 		try {
 
 			conn = DriverManager.getConnection(
-					"jdbc:postgresql://localhost:5432/postgres", "postgres",
-					"bhanu123");
+					prop.getProperty("URL"), prop.getProperty("USERNAME"),
+					prop.getProperty("PASSWORD"));
 
 		} catch (SQLException e) {
 
